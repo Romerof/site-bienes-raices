@@ -146,15 +146,28 @@ img {  /*ultra especial pooounrnrnrn*/
     background-size: cover;
 }
 
+.barra {
+    display: flex;
+    align-items: center;
+    padding-top: 1.5rem;
+    justify-content: space-between;
+}
+
+.navegador {
+    display: none;
+}
+
+.logo {
+    flex-grow:1;
+    line-height: initial;
+}
+
 @media (min-width: 768px ) {
         .site-header {
             text-align: left;
         }
-        
+
         .barra {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding-top: 3rem;
         }
         
@@ -166,7 +179,92 @@ img {  /*ultra especial pooounrnrnrn*/
         .navegador a:last-of-type {
             margin:0;
         }
+
+        .button-menu {
+            display: none;
+        }
+
+        .navegador {
+            display: block
+        }
     }
+
+/** boton del menu movil. actualizado el 25/02/2021 */
+/*=============================================================*/
+
+.button-menu {
+    position: relative;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.button-menu::after{
+    content: "";
+    position: absolute;
+    background-color: #ffffff15;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    transform: scale(0);
+}
+
+.button-menu:active::after{
+    will-change: animation;
+    animation: tap .1s ease-in;
+}
+
+@keyframes tap{
+    0%{transform: scale(0);}
+    100%{transform: scale(1);}
+}
+
+/* barras tipo hamburguesa*/
+.button-menu i{
+    position: absolute;
+
+    height: 3px;
+    width: 30px;
+    display: block;
+
+    background-color: #71b100;
+    border-radius: 20px;
+}
+
+.button-menu i:nth-child(1){
+    top: 14px;
+}
+.button-menu i:nth-child(2){
+    top: 24px;
+}
+.button-menu i:nth-child(3){
+    top: 34px;
+}
+
+/* btn ocultar menu*/
+.button-menu.hide i{
+    transition: 
+        transform .5s ease-out, 
+        opacity .5s ease-out
+    ;
+}
+
+.button-menu.hide i:nth-child(1){
+    will-change: transform;
+    transform: rotate(45deg);
+}
+.button-menu.hide i:nth-child(2){
+    opacity: 0;
+}
+.button-menu.hide i:nth-child(3){
+    
+    will-change: transform;
+    transform: rotate(-45deg);
+}
+
+/*=============================================================*/
 
 /** nosotros **/
 
