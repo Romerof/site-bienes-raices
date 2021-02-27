@@ -113,7 +113,7 @@ img {  /*ultra especial pooounrnrnrn*/
 .contenido-header {
     display : flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     height: 100%;
 }
 
@@ -149,26 +149,46 @@ img {  /*ultra especial pooounrnrnrn*/
 .barra {
     display: flex;
     align-items: center;
-    padding-top: 1.5rem;
+    padding: 1.5rem 5px 0;
     justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: 
+        padding .5s ease;
+    ;
 }
 
-.navegador {
-    display: none;
+.barra.scrolled{
+    background-color: #000000ba;
+    padding: 0 5px;
+    box-shadow: 0 -5px 20px black;
 }
+
 
 .logo {
     flex-grow:1;
     line-height: initial;
+    
+}
+
+.logo img{
+    vertical-align: middle;
+}
+
+.logo.blurred {
+    opacity: .3;
 }
 
 @media (min-width: 768px ) {
         .site-header {
             text-align: left;
+            justify-content: space-between;
         }
 
         .barra {
             padding-top: 3rem;
+            position: static;
         }
         
         .navegador a {
@@ -180,7 +200,7 @@ img {  /*ultra especial pooounrnrnrn*/
             margin:0;
         }
 
-        .button-menu {
+        #base-menu {
             display: none;
         }
 
@@ -192,37 +212,64 @@ img {  /*ultra especial pooounrnrnrn*/
 /** boton del menu movil. actualizado el 25/02/2021 */
 /*=============================================================*/
 
-.button-menu {
+#base-menu {
     position: relative;
-    padding: 10px;
-    width: 50px;
-    height: 50px;
 }
 
-.button-menu::after{
-    content: "";
+.button-menu {
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+}
+
+#menu {
+    display:block;
     position: absolute;
-    background-color: #ffffff15;
+    top: 0;
+    right: 0;
+    z-index: 10;
+
+    border-radius: 50%;
+
+    transition: 
+        right .4s ease-out,
+        top .4s ease-out,
+        background-color .4s ease-in
+    ;
+}
+
+/* animacion tap */
+#menu::before {
+    content: "";
+
     width: 100%;
     height: 100%;
+    position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
+
+    background-color: #ffffff15;
     border-radius: 50%;
+
     transform: scale(0);
 }
 
-.button-menu:active::after{
+#menu.tap::before{
     will-change: animation;
-    animation: tap .1s ease-in;
+    animation: tap .4s ease-out;
 }
 
 @keyframes tap{
-    0%{transform: scale(0);}
-    100%{transform: scale(1);}
+    0%{
+        /*transform: scale(0);*/
+    }100%{
+        transform: scale(1);
+    }
 }
 
 /* barras tipo hamburguesa*/
-.button-menu i{
+#menu i{
     position: absolute;
 
     height: 3px;
@@ -233,36 +280,82 @@ img {  /*ultra especial pooounrnrnrn*/
     border-radius: 20px;
 }
 
-.button-menu i:nth-child(1){
-    top: 14px;
+#menu i:nth-child(1){
+    top: 13px;
+    left: 10px
 }
-.button-menu i:nth-child(2){
+#menu i:nth-child(2){
     top: 24px;
+    left: 10px
 }
-.button-menu i:nth-child(3){
-    top: 34px;
+#menu i:nth-child(3){
+    top: 35px;
+    left: 10px
 }
 
 /* btn ocultar menu*/
-.button-menu.hide i{
+#menu i{
     transition: 
-        transform .5s ease-out, 
-        opacity .5s ease-out
+        transform .3s ease-out, 
+        opacity .3s ease-out,
+        background-color .3s ease-out
+
     ;
 }
 
-.button-menu.hide i:nth-child(1){
-    will-change: transform;
-    transform: rotate(45deg);
+#menu.hide{
+    top: 1rem;
+    right: 14vw;
+    background-color: #71b100;
 }
-.button-menu.hide i:nth-child(2){
+
+#menu.hide i:nth-child(1){
+    top:14px;
+    left: 14px;
+    transform: rotate(45deg);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #333;
+}
+#menu.hide i:nth-child(2){
     opacity: 0;
 }
-.button-menu.hide i:nth-child(3){
-    
-    will-change: transform;
+#menu.hide i:nth-child(3){
+    top:34px;
+    left: 14px;
     transform: rotate(-45deg);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #333;
 }
+
+/* panel de navegacion */
+
+
+.navegador {
+    display: flex;
+    flex-direction: column;
+
+    width: 45vw;
+    max-width: 45vw;
+    height: 100vh;
+    max-width: 100vh;
+    padding: 8rem 0;
+    position: fixed;
+    top:0;
+    right: -45vw;
+    
+    background-color: #333;
+    background: linear-gradient(to bottom, #333 45%, #33333390 100%);
+    /* box-shadow: 0 0 20px black; */
+    transition: right .4s ease-out;
+}
+
+.navegador.fix{
+    right: 0;
+}
+
+
 
 /*=============================================================*/
 
@@ -473,7 +566,7 @@ img {  /*ultra especial pooounrnrnrn*/
     border-radius: 2rem;
 }
 
-.contenido-testimonial blockquote::before {
+.contenido-testimonial div::before {
     content: "";
     background-image: url("../img/comilla.svg");
     background-size: 4rem 4rem;
@@ -486,7 +579,7 @@ img {  /*ultra especial pooounrnrnrn*/
 
 }
 
-.contenido-testimonial blockquote {
+.contenido-testimonial div {
     font-weight: 300;
     padding-left: 1.5rem; 
     padding-top: 1rem;   
