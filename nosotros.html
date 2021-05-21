@@ -13,13 +13,19 @@
 <body>
 
     <header class="site-header">
+        
         <div class="contenedor contenido-header">
-            <div class="barra">
+            <div id= "barra" class="barra">
 
-                <a href="/">
+                <a id="logo" class= "logo" href="/">
                     <img src="img/logo.svg" alt="Logo Bienes Raices"/>
                 </a>
-                <nav class="navegador">  
+                <div id="base-menu" class="button-menu">
+                    <i id="menu" class="button-menu">
+                        <i></i><i></i><i></i> <!-- barras -->
+                    </i>
+                </div>
+                <nav id="menuBar" class="navegador">  
                     <a href="nosotros.html">Nosotros</a>
                     <a href="anuncios.html">Anuncios</a>
                     <a href="blog.html">Blog</a>
@@ -28,6 +34,7 @@
 
             </div>
         </div>
+        
 
     </header>
     
@@ -87,5 +94,7 @@
             <p class="copyright">Todos los derehchos reservados &copy;</p>
         </div>
     </footer>
+    
+    <script src="js/script.js"></script>
 </body>
 </html>
